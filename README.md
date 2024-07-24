@@ -8,8 +8,6 @@ Welcome to my DevOps Projects Repository! This repository is a showcase of vario
 - [Introduction](#introduction)
 - [Projects](#projects)
   - [Project 1: Implementing CI/CD, Docker, Kubernetes, Argo CD, and Selenium for Testing in a Laravel Application Deployment](#project-1-Implementing-CI-CD)
-  - [Project 2: Infrastructure as Code with Terraform](#project-2-infrastructure-as-code-with-terraform)
-  - [Project 3: Monitoring and Logging with Prometheus and Grafana](#project-3-monitoring-and-logging-with-prometheus-and-grafana)
 - [Skills and Technologies](#skills-and-technologies)
 - [Getting Started](#getting-started)
 - [Contact](#contact)
@@ -29,9 +27,7 @@ In this repository, you'll find a collection of my DevOps projects, each showcas
 - Dockerized application for consistent environments.
 - Kubernetes for scalable and reliable deployments.
 - Argo CD for GitOps-driven continuous delivery.
-
-[Link to Project: Implementing CI/CD, Docker, Kubernetes, Argo CD, and Selenium for Testing in a Laravel Application Deployment](#)
-
+  
 ## Skills and Technologies
 - **CI/CD:** Jenkins
 - **Containerization:** Docker, Kubernetes
