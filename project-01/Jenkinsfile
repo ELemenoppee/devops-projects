@@ -1,0 +1,112 @@
+pipeline {
+
+    environment {
+        dockerRegistry = "<SERVER_IP>:5000"
+        baseImage = "<SERVER_IP>:5000/<IMAGE_NAME>" 
+        dockerImage = ""
+        GITHUB_KEY = "<GITHUB_KEY>"
+        GITHUB_USER = "ELemenoppee"
+        APP_REPO_NAME = "laravel-app-demo"
+        K8_REPO = "k8-config"
+        GITHUB_EMAIL = "<GITHUB_EMAIL>"
+        RECIPIENTS = "<RECIPIENTS>"
+    }
+    agent any
+
+    stages {
+        stage('Checkout Latest Source') {
+            steps {
+                checkout([$class: 'GitSCM', branches: [[name: 'main']], userRemoteConfigs: [[url: 'https://<GITHUB_KEY>@github.com/ELemenoppee/laravel-app-demo.git', fetchTags: true]]])
+            }
+        }
+        stage('Prebuild Stage') {
+            steps {
+                script {
+                    sh 'touch .env'
+                    sh 'echo "APP_KEY=base64:cUPmwHx4LXa4Z25HhzFiWCf7TlQmSqnt98pnuiHmzgY=" > .env'
+                }
+            }
+        }
+        stage('Build Docker Image') {
+            steps {
+                script {
+                    def currentBuildNumber = env.BUILD_NUMBER.toInteger()
+                    def nextBuildNumber = ((currentBuildNumber - 1) % 5) + 1
+                    echo "Current Build Number: ${currentBuildNumber}"
+                    echo "Next Build Number: ${nextBuildNumber}"
+                    env.BUILD_NUMBER = nextBuildNumber.toString()
+
+                    dockerImageName = "${baseImage}:${env.BUILD_NUMBER}"
+                    
+                    dockerImage = docker.build dockerImageName
+                }
+            }
+        }
+        stage('Push Docker Image to Private Docker Registry') {
+            steps {
+                script {
+                    withCredentials([usernamePassword(credentialsId: 'docker-private-registry-creds', passwordVariable: 'DOCKER_REGISTRY_PASSWORD', usernameVariable: 'DOCKER_REGISTRY_USERNAME')]) {
+                        sh """
+                           docker login -u "${DOCKER_REGISTRY_USERNAME}" -p "${DOCKER_REGISTRY_PASSWORD}" <SERVER_IP>:5000
+                           docker push "${baseImage}:${env.BUILD_NUMBER}"
+                           docker rmi -f "${baseImage}:${env.BUILD_NUMBER}"
+                        """
+                    }
+                }
+            }
+        }
+        stage('Checkout for Update Deployment File') {
+            steps {
+                git branch: 'main', url: 'https://<GITHUB_KEY>@github.com/ELemenoppee/kubernetes-yaml-files.git'
+            }
+        }
+        stage('Update Deployment File') {
+            steps {
+                script {
+                    sh """ 
+                       BUILD_NUMBER=${BUILD_NUMBER}
+                       git config user.email "${GITHUB_EMAIL}" 
+                       git config user.name "${GITHUB_USER}"
+                       cp -pf laravel-app-demo/template/laravel-app-deployment-template.yaml laravel-app-demo/config/laravel-app-deployment.yaml
+                       sed -i "s/replaceImageTag/${env.BUILD_NUMBER}/g" laravel-app-demo/config/laravel-app-deployment.yaml
+                       git add laravel-app-demo/config/laravel-app-deployment.yaml
+                    """
+
+                    // Check if there are changes to commit
+                    def commitResult = sh(script: 'git status --porcelain', returnStdout: true).trim()
+
+                    if (commitResult.isEmpty()) {
+                        echo "No changes to commit. Proceeding to the next step."
+                    } else {
+                        sh "git commit -m 'Update deployment image to version ${baseImage}:${env.BUILD_NUMBER}'"
+                        sh "git push https://${GITHUB_KEY}@github.com/${GITHUB_USER}/kubernetes-yaml-files HEAD:main"
+                    }
+
+                    sleep time: 600, unit: 'SECONDS'
+                }
+            }
+        }
+        stage('Clean Workspace') {
+            steps {
+                cleanWs()
+            }
+        }
+    }
+    post {
+        success {
+            emailext body: """
+                Job Name: ${env.JOB_NAME}\nBuild Number: ${currentBuild.fullDisplayName}\nBuild Status: Succeeded""",
+                        subject: "DEV ENV: ${env.JOB_NAME} - Build ${env.BUILD_NUMBER} - Successful",
+                        to: "${env.RECIPIENTS}"
+                        // attachLog: true
+        }
+        failure {
+                emailext body: """
+                    Job Name: ${env.JOB_NAME}\nBuild Number: ${env.BUILD_NUMBER}\nBuild Status: Failed
+                    """,
+                        subject: "DEV ENV: ${env.JOB_NAME} - Build ${env.BUILD_NUMBER} - Failed",
+                        to: "${env.RECIPIENTS}"
+                        // attachLog: true
+        }
+    }
+}
