@@ -12,6 +12,8 @@ In this repository, you'll find a collection of my DevOps projects, each showcas
 + **project-01** — Implementing CI/CD, Docker, Kubernetes, Argo CD, and Selenium for Testing in a Laravel Application Deployment
 
 + **project-02** — Simple Python Web Application Using Dockerfile
+
++ **project-03** — Deploy Simple Python Web Application using Jenkins Freestyle Project
   
 ## Skills and Technologies
 - **CI/CD:** Jenkins
@@ -31,4 +33,3 @@ cd devops-projects
 
 ## Contact
 Feel free to reach out if you have any questions or suggestions. 
-
