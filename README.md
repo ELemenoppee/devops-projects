@@ -13,7 +13,11 @@ In this repository, you'll find a collection of my DevOps projects, each showcas
 
 + **project-02** — Simple Python Web Application Using Dockerfile
 
-+ **project-03** — Deploy Simple Python Web Application using Jenkins Freestyle Project
++ **project-03** — Deploy Simple Python Web Application using Jenkins 
+
++ **project-04** — OpenVPN on Docker
+
+Freestyle Project
   
 ## Skills and Technologies
 - **CI/CD:** Jenkins
