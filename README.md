@@ -17,6 +17,8 @@ In this repository, you'll find a collection of my DevOps projects, each showcas
 
 + **project-04** — OpenVPN on Docker
 
++ **project-05** — Upgrading a Kubernetes Cluster
+
 Freestyle Project
   
 ## Skills and Technologies
