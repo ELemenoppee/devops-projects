@@ -19,6 +19,8 @@ In this repository, you'll find a collection of my DevOps projects, each showcas
 
 + **project-05** — Upgrading a Kubernetes Cluster
   
++ **project-06** — Jenkins Notification to Microsoft Teams
+
 ## Skills and Technologies
 - **CI/CD:** Jenkins
 - **Containerization:** Docker, Kubernetes
