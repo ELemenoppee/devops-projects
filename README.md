@@ -21,6 +21,8 @@ In this repository, you'll find a collection of my DevOps projects, each showcas
   
 + **project-06** — Jenkins Notification to Microsoft Teams
 
++ **project-07** — Deploying PostgreSQL as an External Service in Kubernetes to Connect to AWS RDS PostgreSQL
+
 ## Skills and Technologies
 - **CI/CD:** Jenkins
 - **Containerization:** Docker, Kubernetes
