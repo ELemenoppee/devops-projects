@@ -23,12 +23,14 @@ In this repository, you'll find a collection of my DevOps projects, each showcas
 
 + **project-07** — Deploying PostgreSQL as an External Service in Kubernetes to Connect to AWS RDS PostgreSQL
 
++ **project-08** - Deploying PostgreSQL with ArgoCD 
+
 ## Skills and Technologies
 - **CI/CD:** Jenkins
 - **Containerization:** Docker, Kubernetes
 - **Cloud Providers:** AWS, Azure
 - **Configuration Management:** Ansible
-- **Monitoring & Logging:** Prometheus, Grafana, ELK Stack
+- **Monitoring & Logging:** Prometheus, Grafana, ELK Stack, Zabbix
 - **Testing:** Selenium
 
 ## Getting Started
