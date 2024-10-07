@@ -23,7 +23,9 @@ In this repository, you'll find a collection of my DevOps projects, each showcas
 
 + **project-07** — Deploying PostgreSQL as an External Service in Kubernetes to Connect to AWS RDS PostgreSQL
 
-+ **project-08** - Deploying PostgreSQL with ArgoCD 
++ **project-08** — Deploying PostgreSQL with ArgoCD 
+
++ **project-09** — Deploying Ansible on AWS EC2 using Terraform
 
 ## Skills and Technologies
 - **CI/CD:** Jenkins
@@ -32,6 +34,7 @@ In this repository, you'll find a collection of my DevOps projects, each showcas
 - **Configuration Management:** Ansible
 - **Monitoring & Logging:** Prometheus, Grafana, ELK Stack, Zabbix
 - **Testing:** Selenium
+- **Infrastructure as Code** Terraform
 
 ## Getting Started
 To explore these projects, you can clone the repository and navigate to the individual project directories. Each project folder contains a README with detailed setup instructions and prerequisites.
