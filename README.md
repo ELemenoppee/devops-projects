@@ -27,6 +27,8 @@ In this repository, you'll find a collection of my DevOps projects, each showcas
 
 + **project-09** — Deploying Ansible on AWS EC2 using Terraform
 
++ **project-10** — Deploying EC2 Instance with HashiCorp Vault using Terraform
+
 ## Skills and Technologies
 - **CI/CD:** Jenkins
 - **Containerization:** Docker, Kubernetes
