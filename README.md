@@ -29,6 +29,10 @@ In this repository, you'll find a collection of my DevOps projects, each showcas
 
 + **project-10** — Deploying EC2 Instance with HashiCorp Vault using Terraform
 
++ **project-11** — Configuring HashiCorp Vault with Jenkins
+
++ **project-12** — Deploying a Python Web Application on AWS EC2 with Terraform
+
 ## Skills and Technologies
 - **CI/CD:** Jenkins
 - **Containerization:** Docker, Kubernetes
