@@ -33,6 +33,8 @@ In this repository, you'll find a collection of my DevOps projects, each showcas
 
 + **project-12** — Deploying a Python Web Application on AWS EC2 with Terraform
 
++ **project-13** — Horizontal Pod Autoscaler
+
 ## Skills and Technologies
 - **CI/CD:** Jenkins
 - **Containerization:** Docker, Kubernetes
