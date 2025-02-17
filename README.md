@@ -37,6 +37,8 @@ In this repository, you'll find a collection of my DevOps projects, each showcas
 
 + **project-14** — Transferring Docker Overlay2
 
++ **project-15** — Deploy a Static Website with Docker
+
 ## Skills and Technologies
 - **CI/CD:** Jenkins
 - **Containerization:** Docker, Kubernetes
