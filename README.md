@@ -39,6 +39,8 @@ In this repository, you'll find a collection of my DevOps projects, each showcas
 
 + **project-15** — Deploy a Static Website with Docker
 
++ **project-16** — Deploying a Docker Application to Kubernetes
+
 ## Skills and Technologies
 - **CI/CD:** Jenkins
 - **Containerization:** Docker, Kubernetes
